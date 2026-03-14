@@ -77,6 +77,7 @@ The `docs/` folder is the single source of truth for institutional knowledge. Se
 - `/docs` — Capture conversation learnings into docs and clean up stale content
 - `/todo` — Work through TODO.md tasks sequentially (`/todo populate` to re-analyze the codebase and seed the next batch of tasks)
 - `/squad` — Analyze the project and generate domain-specific rules and specialist subagents (`/squad refresh` to update)
+- `/bosskey` — Summarize recent git activity into a standup script
 
 ## External Services
 
