@@ -34,19 +34,18 @@ if [[ "$cmd" == "build" ]]; then
 elif [[ "$cmd" == "test" ]]; then
 
     echo "Running tests..."
-    # Check for broken internal links and validate markdown structure
     echo "Checking markdown files..."
-    find book -name "*.md" -print0 2>/dev/null | xargs -0 -I{} sh -c 'echo "  {}"' || echo "No book/ directory yet"
+    find book -name "*.md" 2>/dev/null | while read -r f; do echo "  $f"; done || echo "No book/ directory yet"
+    echo ""
     echo "Checking SUMMARY.md references..."
     if [[ -f book/SUMMARY.md ]]; then
-        while IFS= read -r line; do
-            if [[ "$line" =~ \(([^)]+\.md)\) ]]; then
-                ref="${BASH_REMATCH[1]}"
-                if [[ ! -f "book/$ref" ]]; then
-                    echo "  BROKEN LINK: $ref"
-                fi
+        BROKEN=0
+        grep -oE '\([^)]+\.md\)' book/SUMMARY.md | tr -d '()' | while read -r ref; do
+            if [[ ! -f "book/$ref" ]]; then
+                echo "  BROKEN LINK: $ref"
+                BROKEN=1
             fi
-        done < book/SUMMARY.md
+        done
         echo "Link check complete."
     else
         echo "  No book/SUMMARY.md yet"
