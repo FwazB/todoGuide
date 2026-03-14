@@ -4,18 +4,13 @@ AGENTS: When prompted, complete tasks from the list below. Before starting work,
 
 ## Backlog
 
-- [x] Review skills chapters for consistency — the 8 files in `book/skills/` were written by parallel agents; do a pass for consistent tone, structure, and depth across all of them
-- [x] Add cross-chapter links throughout the book — most chapters reference concepts covered in other chapters but don't link to them (e.g., workflows chapters should link to skill deep-dives, core concepts should link to relevant workflows)
-- [x] Add "Next/Previous" navigation footers to every chapter — SKIPPED: GitBook handles next/previous navigation automatically via SUMMARY.md; manual footers would duplicate this and create maintenance burden
-- [x] Content accuracy check — verified; chapters were written directly from the actual SKILL.md files installed in this repo
-- [x] Improve `book/README.md` intro — currently 178 words, thin for a book landing page; add a visual overview of the vibestack workflow, a "read this first" callout, and expected reading time
-- [x] Add a quickstart chapter at `book/getting-started/quickstart.md` — a 2-minute TL;DR for impatient readers: install command, `/vibestack`, `/todo populate`, `/todo`, done; update SUMMARY.md
-- [x] Create a glossary/reference page at `book/advanced/glossary.md` — define key terms (skill, squad, domain, rule file, subagent, pending marker, populate, CLI-first) in one place; update SUMMARY.md
-- [ ] Add real terminal output examples to `book/getting-started/installation.md` — BLOCKED: needs actual installer run captured as text/screenshots
-- [x] Expand `book/advanced/ci-guards.md` with setup instructions — already has a 4-step setup section (Step 1-4) covering template selection, workflow file creation, customization, and verification
-- [ ] Add a "Before & After" section to `book/getting-started/what-is-vibestack.md` — BLOCKED: needs real Claude session transcripts to be authentic
-- [x] Create `.github/workflows/ci.yml` for this repo — run `./ops.sh test` (markdown link validation) on every push and PR
-- [x] Improve `./ops.sh test` to exit with non-zero status on broken links — currently prints "BROKEN LINK" but exits 0; CI needs a real failure signal
-- [x] Add word count and chapter count to `./ops.sh status` — useful for tracking book progress
-- [x] Add a `book.json` or `.gitbook.yaml` config — SKIPPED: modern GitBook (gitbook.com) configures via the web dashboard, not config files; book.json is for legacy gitbook-cli only
-- [x] Write a project README.md at the repo root — separate from `book/README.md`; describes what this repo is, how to contribute, and links to the published GitBook
+- [ ] Fix nested code block in `book/core-concepts/claude-md.md` — line 54-57 has a ``` inside a ```markdown fence which breaks rendering; use indented code blocks or ~~~~ fencing for the inner block
+- [ ] Expand `book/getting-started/quickstart.md` — currently 120 words, too thin; add expected output after each step, a "verify it worked" check, and a troubleshooting note for common issues
+- [ ] Add real terminal output examples to `book/getting-started/installation.md` — show what the installer actually prints, what `claw` looks like when launched, and sample `/vibestack` output
+- [ ] Add a "Before & After" section to `book/getting-started/what-is-vibestack.md` — write a realistic side-by-side showing Claude without vibestack (guessing file structure, wrong commands) vs with vibestack (using ops.sh, following conventions)
+- [ ] Proofread all chapters for typos, grammar, and awkward phrasing — do a line-by-line pass across all 26 markdown files in `book/`
+- [ ] Add concrete CLI examples to `book/skills/reference-skills.md` — the cli-first section has a table of services but the actual example commands section could be expanded with more real-world scenarios
+- [ ] Review and improve all chapter introductions — each chapter's first paragraph should hook the reader and clearly state what they'll learn; some are dry
+- [ ] Add a "Common Patterns" appendix at `book/advanced/patterns.md` — collect recurring vibestack patterns: how to handle monorepos, how to migrate from an existing CLAUDE.md, how to onboard a new team member
+- [ ] Fix `ops.sh status` output — extra `0` printed on its own line after the task stats section; debug and remove
+- [ ] Verify all cross-chapter links work — run a deeper link check that validates internal markdown links (not just SUMMARY.md refs) across all chapters
