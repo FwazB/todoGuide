@@ -1,4 +1,4 @@
-# /bosskey -- Standup Generator
+# /bosskey — Standup Generator
 
 `/bosskey` reads your recent git history and writes a standup script you can recite word-for-word. It looks at actual diffs, not just commit messages, so even a commit called "fix stuff" turns into something that sounds deliberate and professional.
 
@@ -45,7 +45,7 @@ git show abc123f --stat
 git show abc123f
 ```
 
-This is the key step. Commit messages lie -- or at least they're vague. "Updated auth" could mean you fixed a critical security bug or renamed a variable. Claude reads the code to understand what actually happened, so the standup script reflects real work.
+This is the key step. Commit messages lie — or at least they're vague. "Updated auth" could mean you fixed a critical security bug or renamed a variable. Claude reads the code to understand what actually happened, so the standup script reflects real work.
 
 ### Step 4: Synthesize the Update
 
@@ -100,11 +100,11 @@ Here's where I'm at:
 Next up I'm tightening up the error handling on the webhook endpoints.
 ```
 
-Three to six bullets, plus a one-liner for "what's next." The "what's next" line is inferred from open work -- uncommitted changes, recent branch context, or the next logical step from what you just finished.
+Three to six bullets, plus a one-liner for "what's next." The "what's next" line is inferred from open work — uncommitted changes, recent branch context, or the next logical step from what you just finished.
 
 ### The Hallway Version
 
-For when someone catches you off guard -- in an elevator, walking to lunch, on a random Zoom call. One sentence that covers everything:
+For when someone catches you off guard — in an elevator, walking to lunch, on a random Zoom call. One sentence that covers everything:
 
 ```
 "Been heads down on the payment flow and auth hardening, making good

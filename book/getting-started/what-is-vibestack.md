@@ -56,6 +56,48 @@ AI agents can take minutes to complete complex tasks. Sitting and watching a ter
 - **Not a lock-in.** Every file it creates is plain Markdown or Bash. You can modify, extend, or delete any of it. If you stop using vibestack, your project still works exactly the same.
 - **Not just for Claude Code.** The conventions (CLAUDE.md, structured docs, single CLI entry point) are useful patterns regardless of which AI tool you use. The skills are Claude Code-specific, but everything else is universal.
 
+## Before and After
+
+Here's what the same task looks like with and without vibestack.
+
+**Task:** "Add input validation to the user registration endpoint."
+
+### Without vibestack
+
+Claude doesn't know your project. It starts guessing:
+
+```
+> Where's the registration endpoint?
+  Let me search for it...
+  → Searches for "register", "signup", "user" across the codebase
+  → Finds 3 possible files, picks the wrong one
+  → Writes validation code using Joi (you use Zod)
+  → Runs "npm test" (your project uses "pnpm test")
+  → Tests fail, spends time debugging the wrong test runner
+  → Eventually finds the right file, rewrites with correct library
+  → Doesn't follow your error response format
+  → You correct it twice before the code is right
+```
+
+Time wasted on guessing: most of the session.
+
+### With vibestack
+
+Claude reads CLAUDE.md and knows your project before writing a single line:
+
+```
+> CLAUDE.md says: Zod for validation, pnpm for scripts, handlers in src/handlers/
+  → Opens src/handlers/users.ts directly
+  → Adds Zod schema matching your existing validation patterns
+  → Runs ./ops.sh test — all pass on first try
+  → Error responses follow the AppError convention from CLAUDE.md
+  → Done in one pass, no corrections needed
+```
+
+Time wasted on guessing: zero.
+
+The difference compounds. Every task in a vibestack project skips the guessing phase, and the conventions stay consistent across sessions.
+
 ## How It Works in Practice
 
 The workflow looks like this:

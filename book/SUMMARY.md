@@ -40,5 +40,6 @@
 - [Squad Mode Deep Dive](advanced/squad-mode.md)
 - [CI Guards](advanced/ci-guards.md)
 - [Settings & Hooks](advanced/settings-and-hooks.md)
+- [Common Patterns](advanced/patterns.md)
 - [Tips & Troubleshooting](advanced/tips.md)
 - [Glossary](advanced/glossary.md)

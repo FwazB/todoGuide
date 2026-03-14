@@ -25,8 +25,8 @@ user-invocable: false
 When Claude works on something that matches the skill's description, it loads the skill's content as additional context. You don't type a command. You don't trigger it manually. It's always there when relevant.
 
 Examples from vibestack:
-- **cli-first** -- Use CLI tools instead of web dashboards for external services
-- **lsp** -- Use language servers for type checking, references, and code navigation
+- **cli-first** — Use CLI tools instead of web dashboards for external services
+- **lsp** — Use language servers for type checking, references, and code navigation
 
 ### Task Skills
 
@@ -55,10 +55,10 @@ You invoke a task skill like this:
 ```
 
 Examples from vibestack:
-- **/vibestack** -- Set up all convention files for a project
-- **/todo** -- Work through or populate the task list
-- **/squad** -- Generate domain-specific rules and specialist subagents
-- **/docs** -- Capture learnings into docs
+- **/vibestack** — Set up all convention files for a project
+- **/todo** — Work through or populate the task list
+- **/squad** — Generate domain-specific rules and specialist subagents
+- **/docs** — Capture learnings into docs
 
 ## File Structure
 
@@ -115,7 +115,7 @@ Inside the skill's instructions, you access arguments with these variables:
 | `$ARGUMENTS` | `3 items` (the full argument string) |
 | `$0` | `3` (first positional argument) |
 | `$1` | `items` (second positional argument) |
-| `$2` | (empty -- no third argument) |
+| `$2` | (empty — no third argument) |
 
 Here's how a skill uses arguments in practice:
 

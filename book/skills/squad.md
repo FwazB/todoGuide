@@ -1,4 +1,4 @@
-# /squad -- Domain Specialists
+# /squad — Domain Specialists
 
 `/squad` partitions your codebase into logical domains and generates context that loads automatically when Claude works on files in each area. Instead of Claude treating every file the same way, it gets domain-specific conventions, patterns, and gotchas for the part of the code it's currently touching.
 
@@ -22,10 +22,10 @@ Claude builds a mental map of the codebase by reading:
 
 Claude groups the codebase into 3-8 logical domains. It looks for natural boundaries:
 
-- **Feature clusters** -- Files that work together to deliver a capability. Auth routes, auth middleware, auth models, and auth tests all form an "auth" domain.
-- **Layer boundaries** -- Horizontal layers like "data layer", "API surface", or "UI components" -- but only when they have distinct conventions worth documenting.
-- **Infrastructure vs product** -- CI/CD pipelines, deployment configs, and build tooling often have their own patterns that differ from application code.
-- **Cross-cutting concerns** -- Logging, error handling, and shared utilities may form a domain if they follow specific conventions.
+- **Feature clusters** — Files that work together to deliver a capability. Auth routes, auth middleware, auth models, and auth tests all form an "auth" domain.
+- **Layer boundaries** — Horizontal layers like "data layer", "API surface", or "UI components" — but only when they have distinct conventions worth documenting.
+- **Infrastructure vs product** — CI/CD pipelines, deployment configs, and build tooling often have their own patterns that differ from application code.
+- **Cross-cutting concerns** — Logging, error handling, and shared utilities may form a domain if they follow specific conventions.
 
 Not everything needs to be a domain. Claude aims for the sweet spot:
 
@@ -38,7 +38,7 @@ A domain earns its place when it has all three of these:
 
 - **Specific conventions** that differ from the project defaults. If the files follow the same rules as everything else, a separate rule file adds no value.
 - **Enough files** to warrant its own context. A domain with 2 files isn't worth the overhead.
-- **Clear identity** -- you can name it in 1-2 words and someone immediately knows what it covers. "auth", "data-layer", "infra", "ui".
+- **Clear identity** — you can name it in 1-2 words and someone immediately knows what it covers. "auth", "data-layer", "infra", "ui".
 
 ### 3. Generates Path-Specific Rules
 
@@ -58,11 +58,11 @@ Handles user authentication, session management, and authorization checks.
 
 ## Conventions
 
-- All auth tokens are JWT in httpOnly cookies -- never localStorage
+- All auth tokens are JWT in httpOnly cookies — never localStorage
 - Session validation middleware runs on every /api/ route except /api/auth/login and /api/auth/register
 - Password hashing uses bcrypt with cost factor 12
 - Failed login attempts are rate-limited per IP in src/middleware/rateLimit.ts
-- Auth errors return 401 with a generic message -- never reveal whether the email exists
+- Auth errors return 401 with a generic message — never reveal whether the email exists
 
 ## Interfaces
 
@@ -77,11 +77,11 @@ Rules follow these principles:
 - Only domain-specific conventions go here. Global project rules stay in CLAUDE.md.
 - Be concrete: "use bcrypt with cost factor 12" not "follow security best practices."
 - Include actual file paths and function names at key integration points.
-- Glob patterns should be generous enough to catch related test files, type definitions, and config -- not just source files.
+- Glob patterns should be generous enough to catch related test files, type definitions, and config — not just source files.
 
 ### 4. Generates Specialist Subagents (Selective)
 
-Most domains only need rules. But some domains are complex enough or high-stakes enough to warrant a dedicated subagent -- a focused specialist with its own persona and restricted tools.
+Most domains only need rules. But some domains are complex enough or high-stakes enough to warrant a dedicated subagent — a focused specialist with its own persona and restricted tools.
 
 Claude generates a subagent only when a domain meets all of these criteria:
 
@@ -102,13 +102,13 @@ model: sonnet
 You are a database specialist for this project.
 
 The database is PostgreSQL 15 accessed via Prisma ORM. All schema changes
-go through Prisma migrations -- never modify the database directly.
+go through Prisma migrations — never modify the database directly.
 
 When working in this domain:
 1. Read the current schema in prisma/schema.prisma before making changes
 2. Check for existing migrations that might conflict in prisma/migrations/
 3. After schema changes, run `npx prisma migrate dev` to generate the migration
-4. Verify the migration SQL is safe -- no data loss, no locking issues on large tables
+4. Verify the migration SQL is safe — no data loss, no locking issues on large tables
 5. Update seed data in prisma/seed.ts if the schema change affects it
 ```
 
@@ -150,11 +150,11 @@ Claude creates or updates `.claude/squad.json` to track the squad configuration:
 }
 ```
 
-The `unmapped` field lists file patterns that didn't clearly belong to any domain. This is intentional -- it's better to leave files unmapped than to guess wrong. On a future `/squad refresh`, you or Claude can decide where they belong.
+The `unmapped` field lists file patterns that didn't clearly belong to any domain. This is intentional — it's better to leave files unmapped than to guess wrong. On a future `/squad refresh`, you or Claude can decide where they belong.
 
 ## /squad refresh
 
-When your project structure changes -- new feature areas, reorganized directories, added services -- run:
+When your project structure changes — new feature areas, reorganized directories, added services — run:
 
 ```
 /squad refresh
@@ -166,7 +166,7 @@ Claude re-analyzes the codebase and updates the existing squad configuration:
 - Updates glob patterns if files have moved
 - Removes domains whose files no longer exist
 - Adds notes about new discoveries to existing rule files
-- **Preserves your manual edits** -- if you've customized a rule file's conventions, Claude updates the `paths` frontmatter and adds new information but does not overwrite your hand-written rules
+- **Preserves your manual edits** — if you've customized a rule file's conventions, Claude updates the `paths` frontmatter and adds new information but does not overwrite your hand-written rules
 
 This is the key difference from running `/squad` from scratch. A fresh run generates everything new. A refresh respects what you've already tuned.
 
@@ -176,7 +176,7 @@ Squad adds value when your project has:
 
 - **Multiple distinct areas** with different conventions (auth layer uses different patterns than the API layer)
 - **Enough code** that Claude can't hold the whole codebase in context at once
-- **Non-obvious rules** that vary by area -- the kind of knowledge that causes mistakes when you don't have it
+- **Non-obvious rules** that vary by area — the kind of knowledge that causes mistakes when you don't have it
 
 Squad is overkill for:
 

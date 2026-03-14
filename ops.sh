@@ -95,9 +95,9 @@ elif [[ "$cmd" == "status" ]]; then
     if [[ -d book ]]; then
         CHAPTERS=$(find book -name "*.md" ! -name "SUMMARY.md" ! -name "README.md" | wc -l | tr -d ' ')
         WORDS=$(cat book/**/*.md book/*.md 2>/dev/null | wc -w | tr -d ' ')
-        DONE=$(grep -c '^\- \[x\]' TODO.md 2>/dev/null || echo 0)
-        OPEN=$(grep -c '^\- \[ \]' TODO.md 2>/dev/null || echo 0)
-        PENDING=$(grep -c '^\- \[\~\]' TODO.md 2>/dev/null || echo 0)
+        DONE=$(grep -c '^\- \[x\]' TODO.md 2>/dev/null) || DONE=0
+        OPEN=$(grep -c '^\- \[ \]' TODO.md 2>/dev/null) || OPEN=0
+        PENDING=$(grep -c '^\- \[\~\]' TODO.md 2>/dev/null) || PENDING=0
         echo "Book:"
         echo "  Chapters:     $CHAPTERS"
         echo "  Total words:  $WORDS"

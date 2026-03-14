@@ -1,6 +1,6 @@
 # Reference Skills (cli-first, lsp)
 
-Reference skills are background knowledge that Claude loads automatically when relevant. They are not slash commands -- you never type `/cli-first` or `/lsp`. Instead, Claude reads their descriptions and pulls them in when the conversation topic matches.
+Reference skills are background knowledge that Claude loads automatically when relevant. They are not slash commands — you never type `/cli-first` or `/lsp`. Instead, Claude reads their descriptions and pulls them in when the conversation topic matches.
 
 Think of reference skills as conventions written down once so you never have to explain them again. Every time Claude interacts with an external service, the `cli-first` skill reminds it to use CLI tools instead of web dashboards. Every time Claude does a cross-file refactor, the `lsp` skill reminds it to use language server tools instead of guessing from grep results.
 
@@ -8,7 +8,7 @@ Think of reference skills as conventions written down once so you never have to 
 
 ### The Philosophy
 
-When Claude needs to interact with a third-party service -- deploying to Vercel, querying a database, configuring a Stripe webhook -- it should use the CLI tool, not visit a web dashboard, not make raw HTTP calls, and not suggest you go click through a UI.
+When Claude needs to interact with a third-party service — deploying to Vercel, querying a database, configuring a Stripe webhook — it should use the CLI tool, not visit a web dashboard, not make raw HTTP calls, and not suggest you go click through a UI.
 
 CLI tools give you:
 
@@ -22,9 +22,9 @@ Before making any API call, Claude checks your `.env*` files for existing creden
 
 ```bash
 # Checked in this order:
-# 1. .env.local     -- local overrides (gitignored, highest priority)
-# 2. .env           -- shared project defaults
-# 3. .env.development / .env.production -- environment-specific
+# 1. .env.local     — local overrides (gitignored, highest priority)
+# 2. .env           — shared project defaults
+# 3. .env.development / .env.production — environment-specific
 ```
 
 Claude looks for API keys, access tokens, project IDs, region settings, database connection strings, and service-specific configuration like bucket names or queue URLs.
@@ -79,14 +79,14 @@ stripe listen --forward-to localhost:3000/api/webhooks
 
 ### When to Use It
 
-The `lsp` skill tells Claude to use language server tools (LSP) -- programs that understand code semantically, not just as text -- for tasks where grep falls short:
+The `lsp` skill tells Claude to use language server tools (LSP) — programs that understand code semantically, not just as text — for tasks where grep falls short:
 
 - **Finding all references** to a function, type, or variable across the codebase
 - **Go-to-definition** to understand what a symbol actually is, especially when it's imported through multiple layers
 - **Type checking** to catch errors the way CI will, before declaring a refactor done
 - **Understanding inferred types** that are not written explicitly in source code
-- **Call hierarchy** -- who calls this function, and what does it call
-- **Rename safety** -- verifying all usages before a cross-file rename
+- **Call hierarchy** — who calls this function, and what does it call
+- **Rename safety** — verifying all usages before a cross-file rename
 
 For simple, single-file edits where you can read the code directly, LSP is overkill. It's most valuable during refactors that touch multiple files.
 
@@ -149,9 +149,9 @@ The Go language server adds interface implementation lookup and package-wide sym
 
 Claude uses LSP tools at three points during a refactor:
 
-1. **Before starting** -- use references and definitions to map the blast radius. Know every file that will be affected before changing anything.
-2. **During implementation** -- use hover and signature help when unsure about types or APIs. Don't guess when the language server can give an exact answer.
-3. **After changes** -- run the type checker to verify correctness. `tsc --noEmit`, `pyright`, `cargo check`, or `go vet`. This catches errors that reading files alone cannot.
+1. **Before starting** — use references and definitions to map the blast radius. Know every file that will be affected before changing anything.
+2. **During implementation** — use hover and signature help when unsure about types or APIs. Don't guess when the language server can give an exact answer.
+3. **After changes** — run the type checker to verify correctness. `tsc --noEmit`, `pyright`, `cargo check`, or `go vet`. This catches errors that reading files alone cannot.
 
 ### The Rules
 

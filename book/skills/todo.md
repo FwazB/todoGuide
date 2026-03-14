@@ -1,6 +1,6 @@
-# /todo -- Task Runner
+# /todo — Task Runner
 
-`/todo` is the command that puts Claude to work. It reads your TODO.md file, picks up open tasks, and executes them one by one -- reading code, writing code, running tests, whatever the task requires.
+`/todo` is the command that puts Claude to work. It reads your TODO.md file, picks up open tasks, and executes them one by one — reading code, writing code, running tests, whatever the task requires.
 
 It has two modes: **run mode** for executing tasks and **populate mode** for generating new ones.
 
@@ -15,10 +15,10 @@ Type `/todo` and Claude starts working through your task list:
 Here's what happens:
 
 1. Claude reads `TODO.md` and parses the task list.
-2. It finds all items marked `[ ]` (open). It skips `[~]` (pending -- another agent is on it) and `[x]` (done).
+2. It finds all items marked `[ ]` (open). It skips `[~]` (pending — another agent is on it) and `[x]` (done).
 3. It takes the first open item and marks it `[~]` in the file immediately, before doing any work. This claims the task so parallel agents don't collide.
 4. It reads the relevant code and docs to understand what the task requires.
-5. It does the work -- edits files, runs commands, creates tests, whatever the task describes.
+5. It does the work — edits files, runs commands, creates tests, whatever the task describes.
 6. It verifies the work by running tests or checks (`./ops.sh test`, linting, type checking).
 7. It marks the task `[x]` in TODO.md.
 8. It moves to the next open item and repeats.
@@ -35,7 +35,7 @@ This runs up to 3 tasks and stops. Useful when you want to review progress betwe
 
 ### Blocked Tasks
 
-Sometimes a task can't be completed -- missing credentials, unclear requirements, a dependency on another task that hasn't been done yet. When this happens, Claude:
+Sometimes a task can't be completed — missing credentials, unclear requirements, a dependency on another task that hasn't been done yet. When this happens, Claude:
 
 1. Marks the task back to `[ ]` (so it's available again)
 2. Adds a note explaining the blocker
@@ -58,24 +58,24 @@ When your task list is empty or stale, generate a fresh batch:
 
 Claude scans the entire codebase and writes a new set of 10-20 prioritized tasks. Here's the process:
 
-1. **Reads TODO.md** and notes everything marked `[x]` -- these represent completed work that shouldn't be re-added.
-2. **Reads existing documentation** -- README, `docs/`, any architecture notes -- for product goals, planned features, and business context.
-3. **Scans the codebase** -- config files, test coverage, error handling, auth implementation, CI/CD setup, logging, database access patterns.
-4. **Identifies gaps** -- what's missing, what's fragile, what would block a production launch.
-5. **Writes the new task list** -- 10-20 items, rank-ordered by impact. Clears completed tasks (they're done) and preserves any open or pending tasks that are still relevant.
+1. **Reads TODO.md** and notes everything marked `[x]` — these represent completed work that shouldn't be re-added.
+2. **Reads existing documentation** — README, `docs/`, any architecture notes — for product goals, planned features, and business context.
+3. **Scans the codebase** — config files, test coverage, error handling, auth implementation, CI/CD setup, logging, database access patterns.
+4. **Identifies gaps** — what's missing, what's fragile, what would block a production launch.
+5. **Writes the new task list** — 10-20 items, rank-ordered by impact. Clears completed tasks (they're done) and preserves any open or pending tasks that are still relevant.
 
 ### The Prioritization Framework
 
-Tasks are ranked by this priority order. The framework is a guideline, not a rigid hierarchy -- Claude adapts it to what the project actually needs.
+Tasks are ranked by this priority order. The framework is a guideline, not a rigid hierarchy — Claude adapts it to what the project actually needs.
 
-1. **Security and data integrity** -- Auth, input validation, secrets management, SQL injection prevention, CSRF protection. Anything that could lose user data or get you hacked.
-2. **Core reliability** -- Error handling, database migrations, transaction safety, graceful degradation. The app shouldn't crash or corrupt data under normal use.
-3. **Testing** -- Unit tests for business logic, integration tests for critical paths, E2E tests for key user flows. Enough coverage to deploy with confidence.
-4. **CI/CD and deployment** -- Automated build/test pipeline, staging environment, zero-downtime deploys. Ship fast without breaking things.
-5. **Observability** -- Logging, error tracking (Sentry, etc.), uptime monitoring, basic alerting. Know when things break before users tell you.
-6. **Performance and scalability** -- Database indexing, query optimization, caching, connection pooling. Handle real traffic without falling over.
-7. **User experience polish** -- Loading states, error messages, edge cases, mobile responsiveness. The stuff that makes users trust your product.
-8. **Developer experience** -- Linting, type safety, dev environment setup, seed data. Makes the team faster for everything above.
+1. **Security and data integrity** — Auth, input validation, secrets management, SQL injection prevention, CSRF protection. Anything that could lose user data or get you hacked.
+2. **Core reliability** — Error handling, database migrations, transaction safety, graceful degradation. The app shouldn't crash or corrupt data under normal use.
+3. **Testing** — Unit tests for business logic, integration tests for critical paths, E2E tests for key user flows. Enough coverage to deploy with confidence.
+4. **CI/CD and deployment** — Automated build/test pipeline, staging environment, zero-downtime deploys. Ship fast without breaking things.
+5. **Observability** — Logging, error tracking (Sentry, etc.), uptime monitoring, basic alerting. Know when things break before users tell you.
+6. **Performance and scalability** — Database indexing, query optimization, caching, connection pooling. Handle real traffic without falling over.
+7. **User experience polish** — Loading states, error messages, edge cases, mobile responsiveness. The stuff that makes users trust your product.
+8. **Developer experience** — Linting, type safety, dev environment setup, seed data. Makes the team faster for everything above.
 
 This order reflects a simple principle: fix what could hurt users first, then build confidence in shipping, then polish.
 
@@ -92,7 +92,7 @@ Here's the difference:
 
 ```markdown
 # Good
-- [ ] Add input validation to `POST /api/users` in `src/handlers/users.ts` -- validate email format, password length (min 8 chars), and required fields
+- [ ] Add input validation to `POST /api/users` in `src/handlers/users.ts` — validate email format, password length (min 8 chars), and required fields
 - [ ] Write integration tests for the payment flow: test successful charge, declined card, and idempotency in `tests/integration/payment.test.ts`
 
 # Too vague
@@ -129,6 +129,6 @@ Each cycle of populate-and-run pushes the codebase closer to production-readines
 
 - **Work top to bottom.** Tasks are ordered by priority. Follow the order unless you have a specific reason not to.
 - **Run `/todo populate` when the list is empty.** Don't manually seed tasks unless you have specific work in mind. Let Claude analyze the codebase and figure out what matters most.
-- **Add your own tasks.** TODO.md isn't exclusively for AI-generated tasks. Add items manually whenever you want -- just place them at the appropriate priority level in the list.
+- **Add your own tasks.** TODO.md isn't exclusively for AI-generated tasks. Add items manually whenever you want — just place them at the appropriate priority level in the list.
 - **Review between batches.** Run `/todo 3`, check the results, then run `/todo 3` again. This gives you checkpoints to course-correct if something goes wrong.
 - **Parallel agents work.** If you run two Claude sessions at the same time, the `[~]` pending marker prevents them from grabbing the same task. One agent claims it, the other skips to the next open item.

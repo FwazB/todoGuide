@@ -14,7 +14,7 @@ Write a skill when:
 
 There are two types of skills, and the distinction matters:
 
-**Reference skills** are background knowledge. Claude reads them automatically when the topic is relevant. You never invoke them directly -- they just inform how Claude behaves.
+**Reference skills** are background knowledge. Claude reads them automatically when the topic is relevant. You never invoke them directly — they just inform how Claude behaves.
 
 - `user-invocable: false`
 - No slash command
@@ -41,11 +41,11 @@ mkdir -p .claude/skills/my-skill
 Create `.claude/skills/my-skill/SKILL.md` with YAML frontmatter and markdown instructions:
 
 ```yaml
---
+---
 name: my-skill
 description: What this skill does and when Claude should use it
 user-invocable: true
---
+---
 
 # My Skill
 
@@ -56,9 +56,9 @@ The directory can also contain supporting files:
 
 ```
 .claude/skills/my-skill/
-  SKILL.md          # Required -- frontmatter + instructions
-  reference.md      # Optional -- detailed docs Claude can read
-  templates/        # Optional -- templates, examples, scripts
+  SKILL.md          # Required — frontmatter + instructions
+  reference.md      # Optional — detailed docs Claude can read
+  templates/        # Optional — templates, examples, scripts
 ```
 
 ## Frontmatter Reference
@@ -75,7 +75,7 @@ The YAML frontmatter at the top of `SKILL.md` controls how the skill behaves:
 | `argument-hint` | Hint shown in autocomplete | `[environment]` |
 | `context` | Run in an isolated context | `fork` |
 
-The `description` field is the most important for reference skills. Claude uses it to decide whether to load the skill. Write it as if answering "when should Claude read this?" -- for example, `"Convention for error handling in API route handlers. Auto-loads when working with error responses or exception handling."`.
+The `description` field is the most important for reference skills. Claude uses it to decide whether to load the skill. Write it as if answering "when should Claude read this?" — for example, `"Convention for error handling in API route handlers. Auto-loads when working with error responses or exception handling."`.
 
 ## Using Arguments
 
@@ -98,13 +98,13 @@ The skill content can reference:
 Use them directly in your skill instructions:
 
 ```yaml
---
+---
 name: deploy-staging
 description: Deploy the app to a staging environment in the specified region
 user-invocable: true
 disable-model-invocation: true
 argument-hint: [region]
---
+---
 
 # Deploy to Staging
 
@@ -126,11 +126,11 @@ If `$ARGUMENTS` is not referenced anywhere in the skill content, Claude Code app
 Here is a reference skill that teaches Claude your project's error handling conventions:
 
 ```yaml
---
+---
 name: error-handling
 description: Conventions for error handling in API route handlers. Auto-loads when working with error responses, try/catch blocks, or exception handling.
 user-invocable: false
---
+---
 
 # Error Handling Conventions
 
@@ -167,21 +167,21 @@ All API route handlers use the `AppError` class for error responses.
     }
 ```
 
-Claude loads this skill whenever it sees you working on route handlers or error handling. You never invoke it -- it just shapes how Claude writes error-handling code in your project.
+Claude loads this skill whenever it sees you working on route handlers or error handling. You never invoke it — it just shapes how Claude writes error-handling code in your project.
 
 ## Example: Task Skill
 
 Here is a task skill for deploying to staging with specific verification steps:
 
 ```yaml
---
+---
 name: deploy-staging
 description: Build, test, and deploy the app to the staging environment
 user-invocable: true
 disable-model-invocation: true
 allowed-tools: Bash(./ops.sh *), Bash(aws *), Read
 argument-hint: ""
---
+---
 
 # Deploy to Staging
 

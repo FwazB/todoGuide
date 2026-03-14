@@ -1,4 +1,4 @@
-# /docs -- Doc Maintenance
+# /docs — Doc Maintenance
 
 `/docs` captures what you learned during a work session and writes it to the right place in `docs/`. It also cleans up stale content, fixes drifted references, and makes sure your documentation matches the actual codebase.
 
@@ -53,11 +53,11 @@ Every entry includes the "why" — not just what was decided, but the reasoning 
 
 This is the step that keeps docs from rotting. Claude scans every file in `docs/` looking for:
 
-- **Stale references** -- features, config fields, files, or functions that no longer exist in the codebase
-- **Incorrect counts or names** -- test counts, enum variants, file paths, or function signatures that have drifted
-- **Redundancy** -- the same information duplicated across multiple docs
-- **Dead links** -- references to files or sections that were removed
-- **Outdated examples** -- command snippets or code samples that reference old flag names or deprecated workflows
+- **Stale references** — features, config fields, files, or functions that no longer exist in the codebase
+- **Incorrect counts or names** — test counts, enum variants, file paths, or function signatures that have drifted
+- **Redundancy** — the same information duplicated across multiple docs
+- **Dead links** — references to files or sections that were removed
+- **Outdated examples** — command snippets or code samples that reference old flag names or deprecated workflows
 
 The key rule: Claude verifies against the actual codebase before removing anything. It runs grep on the source to confirm that a referenced function is truly gone before deleting its documentation. This prevents overzealous cleanup from removing docs about things that still exist but live in unexpected places.
 
@@ -79,7 +79,7 @@ Claude verifies:
 - **Function names** and module descriptions match the current code
 - **Command examples** still work (e.g., `./ops.sh deploy staging` still takes that argument)
 - **References to deleted features** are removed
-- **Conciseness** is maintained -- if a section has grown too long, detailed content moves to `docs/` with a link
+- **Conciseness** is maintained — if a section has grown too long, detailed content moves to `docs/` with a link
 
 ```markdown
 ## Architecture
@@ -118,7 +118,7 @@ Run `/docs` when:
 - You removed a feature or deprecated a workflow
 - You've been working for a while and suspect the docs have drifted from reality
 
-You don't need to run it after every session. If all you did was fix a typo or add a CSS rule, there's nothing worth documenting. Use judgment -- if you learned something that would save someone 30 minutes of debugging, that's worth capturing.
+You don't need to run it after every session. If all you did was fix a typo or add a CSS rule, there's nothing worth documenting. Use judgment — if you learned something that would save someone 30 minutes of debugging, that's worth capturing.
 
 ## What It Produces
 

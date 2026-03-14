@@ -51,7 +51,7 @@ Points to `ops.sh` as the single way to do things. This section stays the same a
 
 A directory tree showing the top-level layout. Only include directories that matter — don't list every file.
 
-```markdown
+````markdown
 ## Project Structure
 
 ```
@@ -65,6 +65,7 @@ migrations/       # SQL migration files
 docs/             # Living documentation
 ops.sh            # Project CLI
 ```
+````
 
 This tells Claude where to find things. When you ask it to "add a new endpoint," it knows to look in `handler/` for the HTTP layer and `service/` for the business logic.
 
