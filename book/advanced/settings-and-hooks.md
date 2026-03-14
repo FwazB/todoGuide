@@ -64,7 +64,7 @@ The `permissions.allow` array pre-approves tool access. Without these, Claude as
 }
 ```
 
-This is the "bypass permissions" design opinion. Claude can work autonomously without stopping to ask "can I read this file?" at every step.
+This is the "bypass permissions" [design opinion](../getting-started/what-is-vibestack.md#four-design-opinions). Claude can work autonomously without stopping to ask "can I read this file?" at every step.
 
 **Security note:** These permissions are broad. They're appropriate for local development where you trust the AI agent. For shared environments or production access, scope them down.
 
@@ -91,7 +91,7 @@ The `env` section sets environment variables for Claude Code sessions.
 }
 ```
 
-`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` enables squad mode — letting Claude spawn specialist subagents defined in `.claude/agents/`.
+`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` enables [squad mode](squad-mode.md) — letting Claude spawn specialist subagents defined in `.claude/agents/`.
 
 Add project-specific variables here if Claude needs them during sessions (non-secret values only — use `.env` files for secrets).
 

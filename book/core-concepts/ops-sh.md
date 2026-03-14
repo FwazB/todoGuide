@@ -16,7 +16,7 @@ This consistency matters because:
 
 ## The Standard Commands
 
-Every `ops.sh` starts with these commands. `/vibestack` fills them in based on your project's actual tooling.
+Every `ops.sh` starts with these commands. [`/vibestack`](../skills/vibestack.md) fills them in based on your project's actual tooling.
 
 ### build
 

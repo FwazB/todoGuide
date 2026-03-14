@@ -6,19 +6,19 @@ Practical advice for getting the most out of vibestack, plus solutions to common
 
 ### CLAUDE.md is too long
 
-If CLAUDE.md grows past 100 lines, you're putting too much in it. It loads into every conversation, so bloat wastes context.
+If [CLAUDE.md](../core-concepts/claude-md.md) grows past 100 lines, you're putting too much in it. It loads into every conversation, so bloat wastes context.
 
-**Fix:** Move detailed explanations to `docs/` and link to them from CLAUDE.md. Keep CLAUDE.md as a quick reference — bullet points and short descriptions, not paragraphs.
+**Fix:** Move detailed explanations to [`docs/`](../core-concepts/docs.md) and link to them from CLAUDE.md. Keep CLAUDE.md as a quick reference — bullet points and short descriptions, not paragraphs.
 
 ### TODO.md tasks are too vague
 
-"Improve the API" isn't a task. Claude won't know where to start, and the result will be unfocused.
+[TODO.md](../core-concepts/todo-md.md) tasks like "Improve the API" aren't actionable. Claude won't know where to start, and the result will be unfocused.
 
 **Fix:** Be specific. Reference actual files, endpoints, or functions. "Add request validation to `POST /api/orders` in `src/handlers/orders.ts` — validate required fields and return 400 with field-level errors."
 
 ### ops.sh commands are out of date
 
-You changed your build system but forgot to update ops.sh. Now Claude runs the wrong commands.
+You changed your build system but forgot to update [ops.sh](../core-concepts/ops-sh.md). Now Claude runs the wrong commands.
 
 **Fix:** Treat ops.sh like code — update it when your tooling changes. Run `/docs` periodically to catch stale references in both ops.sh and CLAUDE.md.
 
@@ -26,11 +26,11 @@ You changed your build system but forgot to update ops.sh. Now Claude runs the w
 
 Six-month-old docs that describe deleted features are worse than no docs. They actively mislead Claude.
 
-**Fix:** Run `/docs` after significant changes. It scans for stale references and verifies them against the codebase before removing them.
+**Fix:** Run [`/docs`](../skills/docs.md) after significant changes. It scans for stale references and verifies them against the codebase before removing them.
 
 ### Too many squad domains
 
-Eight thin domains with generic advice waste context. Claude loads rule files for every domain it touches, so each one should earn its place.
+Eight thin [squad domains](squad-mode.md) with generic advice waste context. Claude loads rule files for every domain it touches, so each one should earn its place.
 
 **Fix:** Aim for 3-5 domains. Merge related areas. Only create a domain when it has conventions that genuinely differ from the project defaults.
 
@@ -40,7 +40,7 @@ Eight thin domains with generic advice waste context. Claude loads rule files fo
 
 For projects with thousands of files:
 
-- **Use squad mode.** Domain-specific rules keep context focused instead of loading everything.
+- **Use [squad mode](squad-mode.md).** Domain-specific rules keep context focused instead of loading everything.
 - **Scope tasks tightly.** "Fix all error handling" is too broad. "Add error handling to the payment flow in `src/services/payment.ts`" gives Claude a clear target.
 - **Use `.gitignore`-style exclusions.** Claude Code respects gitignore patterns. Make sure `node_modules/`, `dist/`, and other generated directories are excluded.
 
@@ -64,23 +64,23 @@ Running multiple Claude sessions:
 
 ### Can I use vibestack with other AI tools?
 
-The convention files (CLAUDE.md, TODO.md, ops.sh, docs/) are useful with any AI tool. They're plain Markdown and Bash. The skills (`.claude/skills/`) are specific to Claude Code.
+The convention files (CLAUDE.md, TODO.md, ops.sh, docs/) are useful with any AI tool. They're plain Markdown and Bash. The [skills](../skills/how-skills-work.md) (`.claude/skills/`) are specific to Claude Code.
 
 ### Do I need to run `/vibestack` every time?
 
-No. Run it once during setup. Run it again if the project structure changes significantly (new services, major refactoring, changed tech stack). For day-to-day work, just use `/todo` and `/docs`.
+No. Run it once during setup. Run it again if the project structure changes significantly (new services, major refactoring, changed tech stack). For day-to-day work, just use [`/todo`](../skills/todo.md) and [`/docs`](../skills/docs.md).
 
 ### Can I delete skills I don't use?
 
-Yes. Skills are independent. If you don't use `/bosskey`, delete the `.claude/skills/bosskey/` directory. It won't affect anything else.
+Yes. [Skills are independent](../skills/how-skills-work.md). If you don't use `/bosskey`, delete the `.claude/skills/bosskey/` directory. It won't affect anything else.
 
 ### What if Claude fills in CLAUDE.md wrong?
 
-Edit it. CLAUDE.md is a regular file. Fix whatever's wrong and it'll be correct for every future session. The `/vibestack` output is a starting point, not a final answer.
+Edit it. CLAUDE.md is a regular file. Fix whatever's wrong and it'll be correct for every future session. The [`/vibestack`](../skills/vibestack.md) output is a starting point, not a final answer.
 
 ### How do I handle secrets?
 
-Never put secrets in CLAUDE.md, settings.json, or any committed file. Use `.env` files (gitignored) for local secrets. Reference them in CLAUDE.md by variable name: "Stripe key in `.env.local` as `STRIPE_SECRET_KEY`."
+Never put secrets in CLAUDE.md, [settings.json](settings-and-hooks.md), or any committed file. Use `.env` files (gitignored) for local secrets. Reference them in CLAUDE.md by variable name: "Stripe key in `.env.local` as `STRIPE_SECRET_KEY`."
 
 ### What if `/todo populate` generates bad tasks?
 
@@ -94,11 +94,11 @@ Yes, but you'll want squad mode. Each package or service becomes a domain with i
 
 ### Claude ignores CLAUDE.md conventions
 
-Check that CLAUDE.md is in the project root (not a subdirectory). Claude Code loads it from the working directory automatically.
+Check that [CLAUDE.md](../core-concepts/claude-md.md) is in the project root (not a subdirectory). Claude Code loads it from the working directory automatically.
 
 ### Skills don't appear in the `/` menu
 
-Check the file path: `.claude/skills/<name>/SKILL.md`. The directory name becomes the command name. Make sure:
+Check the file path: `.claude/skills/<name>/SKILL.md`. The directory name becomes the command name. See [how skills work](../skills/how-skills-work.md) and make sure:
 - The file is named exactly `SKILL.md` (case-sensitive)
 - The frontmatter has `user-invocable: true` (or doesn't have `user-invocable: false`)
 - The YAML frontmatter is valid

@@ -34,22 +34,29 @@ if [[ "$cmd" == "build" ]]; then
 elif [[ "$cmd" == "test" ]]; then
 
     echo "Running tests..."
+    ERRORS=0
+
     echo "Checking markdown files..."
     find book -name "*.md" 2>/dev/null | while read -r f; do echo "  $f"; done || echo "No book/ directory yet"
     echo ""
+
     echo "Checking SUMMARY.md references..."
     if [[ -f book/SUMMARY.md ]]; then
-        BROKEN=0
-        grep -oE '\([^)]+\.md\)' book/SUMMARY.md | tr -d '()' | while read -r ref; do
+        while IFS= read -r ref; do
             if [[ ! -f "book/$ref" ]]; then
                 echo "  BROKEN LINK: $ref"
-                BROKEN=1
+                ERRORS=$((ERRORS + 1))
             fi
-        done
+        done < <(grep -oE '\([^)]+\.md\)' book/SUMMARY.md | tr -d '()')
         echo "Link check complete."
     else
         echo "  No book/SUMMARY.md yet"
     fi
+
+    if [[ "$ERRORS" -gt 0 ]]; then
+        die "$ERRORS broken link(s) found"
+    fi
+    echo "All checks passed."
 
 # ─── run ────────────────────────────────────────────────
 
@@ -85,10 +92,20 @@ elif [[ "$cmd" == "status" ]]; then
 
     echo "$PROJECT_NAME status..."
     echo ""
-    echo "Chapters:"
     if [[ -d book ]]; then
-        find book -name "*.md" | wc -l | xargs echo "  Markdown files:"
-        wc -w book/**/*.md 2>/dev/null | tail -1 | xargs echo "  Total words:" || echo "  Total words: 0"
+        CHAPTERS=$(find book -name "*.md" ! -name "SUMMARY.md" ! -name "README.md" | wc -l | tr -d ' ')
+        WORDS=$(cat book/**/*.md book/*.md 2>/dev/null | wc -w | tr -d ' ')
+        DONE=$(grep -c '^\- \[x\]' TODO.md 2>/dev/null || echo 0)
+        OPEN=$(grep -c '^\- \[ \]' TODO.md 2>/dev/null || echo 0)
+        PENDING=$(grep -c '^\- \[\~\]' TODO.md 2>/dev/null || echo 0)
+        echo "Book:"
+        echo "  Chapters:     $CHAPTERS"
+        echo "  Total words:  $WORDS"
+        echo ""
+        echo "Tasks:"
+        echo "  Done:         $DONE"
+        echo "  Open:         $OPEN"
+        echo "  In progress:  $PENDING"
     else
         echo "  No book/ directory yet"
     fi

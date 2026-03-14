@@ -6,7 +6,7 @@ The `docs/` folder is your project's institutional knowledge base. It serves thr
 
 Most project docs get written once and never updated. Six months later, the README describes a deployment process you replaced, references a config field you deleted, and links to a file that moved.
 
-vibestack treats docs as living files. The `/docs` skill actively maintains them — capturing new learnings, removing stale references, and verifying that what's written still matches the code. Docs stay accurate because they get updated as part of the regular workflow, not as an afterthought.
+vibestack treats docs as living files. The [`/docs`](../skills/docs.md) skill actively maintains them — capturing new learnings, removing stale references, and verifying that what's written still matches the code. Docs stay accurate because they get updated as part of the regular workflow, not as an afterthought.
 
 ## Structure
 
@@ -61,7 +61,7 @@ Write a doc when:
 Don't write a doc when:
 
 - **The code is self-explanatory.** A well-named function with clear types doesn't need a doc.
-- **It belongs in CLAUDE.md.** Quick-reference info (tech stack, build commands, conventions) goes in CLAUDE.md, not docs.
+- **It belongs in [CLAUDE.md](claude-md.md).** Quick-reference info (tech stack, build commands, conventions) goes in CLAUDE.md, not docs.
 - **It's temporary.** In-progress notes and task context belong in TODO.md or conversation, not permanent docs.
 
 ## How to Write a Doc

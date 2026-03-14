@@ -13,7 +13,7 @@ cd ~/projects/my-app
 curl -fsSL https://raw.githubusercontent.com/vibestackmd/vibestack/main/install.sh | bash
 ```
 
-Takes under a minute. You now have `CLAUDE.md`, `TODO.md`, `ops.sh`, `docs/`, and `.claude/skills/` in your project. All templates — nothing is filled in yet.
+Takes under a minute. You now have [`CLAUDE.md`](../core-concepts/claude-md.md), [`TODO.md`](../core-concepts/todo-md.md), [`ops.sh`](../core-concepts/ops-sh.md), [`docs/`](../core-concepts/docs.md), and `.claude/skills/` in your project. All templates — nothing is filled in yet.
 
 ## Phase 2: Configure
 
@@ -26,6 +26,8 @@ claw
 ```
 /vibestack
 ```
+
+(See the [`/vibestack` skill chapter](../skills/vibestack.md) for details on what this command does.)
 
 Claude spends a minute or two reading your codebase. Then it:
 
@@ -44,7 +46,7 @@ Start executing tasks:
 /todo
 ```
 
-Claude reads TODO.md, picks up the first open task, and gets to work. It reads relevant code, makes changes, runs tests, and marks the task done. Then it moves to the next one.
+Claude reads TODO.md, picks up the first open task, and gets to work. (See [`/todo`](../skills/todo.md) for the full workflow.) It reads relevant code, makes changes, runs tests, and marks the task done. Then it moves to the next one.
 
 A typical session might look like:
 
@@ -81,7 +83,7 @@ After the work session, capture what was learned:
 /docs
 ```
 
-Claude reviews the conversation and writes up anything worth preserving:
+Claude reviews the conversation (see [`/docs`](../skills/docs.md)) and writes up anything worth preserving:
 
 - The rate limiting strategy and why those limits were chosen
 - The validation schema patterns used across endpoints
@@ -117,7 +119,7 @@ When the task list runs dry:
 /todo populate
 ```
 
-Claude re-scans the codebase, sees what's improved since last time, and generates the next batch of tasks.
+Claude re-scans the codebase, sees what's improved since last time, and [generates the next batch of tasks](../core-concepts/todo-md.md).
 
 ## Timing
 

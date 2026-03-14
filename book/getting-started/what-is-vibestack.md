@@ -60,10 +60,10 @@ AI agents can take minutes to complete complex tasks. Sitting and watching a ter
 
 The workflow looks like this:
 
-1. Install vibestack into your project (one command)
+1. [Install vibestack](installation.md) into your project (one command)
 2. Run `/vibestack` — Claude analyzes your project and fills in the convention files with real, project-specific content
-3. Run `/todo populate` — Claude audits your codebase and creates a prioritized task list
+3. Run [`/todo populate`](../skills/todo.md) — Claude audits your codebase and creates a prioritized task list
 4. Run `/todo` — Claude works through the tasks, one by one
-5. Run `/docs` — Claude captures what it learned into your docs folder
+5. Run [`/docs`](../skills/docs.md) — Claude captures what it learned into your docs folder
 
 From that point on, every Claude Code session in your project starts with full context. No more guessing.

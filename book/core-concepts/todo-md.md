@@ -46,7 +46,7 @@ Agent 2 sees the `[~]` and skips to the next `[ ]` item. No coordination needed,
 
 This isn't bulletproof — two agents could theoretically grab the same task in the same instant — but in practice it works well because agents read and write the file sequentially.
 
-## How `/todo` Works
+## How [`/todo`](../skills/todo.md) Works
 
 When you run `/todo`, Claude:
 
@@ -69,7 +69,7 @@ If a task is blocked — missing credentials, unclear requirements, dependency o
 
 ## How `/todo populate` Works
 
-When you run `/todo populate`, Claude:
+When you run [`/todo populate`](../skills/todo.md), Claude:
 
 1. Reads TODO.md and notes all completed tasks (so it doesn't re-add them)
 2. Scans the entire codebase — config files, tests, error handling, security, CI/CD, docs

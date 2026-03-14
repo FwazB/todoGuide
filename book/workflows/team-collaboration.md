@@ -1,6 +1,6 @@
 # Team Collaboration
 
-When multiple developers use vibestack on the same project, the conventions scale naturally. CLAUDE.md gives everyone the same context, TODO.md prevents duplicate work, and squad mode partitions ownership. This chapter covers the patterns that make team AI-assisted development work.
+When multiple developers use vibestack on the same project, the conventions scale naturally. [CLAUDE.md](../core-concepts/claude-md.md) gives everyone the same context, [TODO.md](../core-concepts/todo-md.md) prevents duplicate work, and [squad mode](../advanced/squad-mode.md) partitions ownership. This chapter covers the patterns that make team AI-assisted development work.
 
 ## Shared Context
 
@@ -43,7 +43,7 @@ For teams larger than 3-4 parallel sessions, consider splitting TODO.md into dom
 
 On a team, different people own different parts of the codebase. The frontend developer shouldn't need to understand database migration conventions, and the infrastructure engineer doesn't need to know your React component patterns.
 
-`/squad` solves this by creating domain-specific rules:
+[`/squad`](../skills/squad.md) solves this by creating domain-specific rules:
 
 ```
 .claude/rules/
@@ -90,7 +90,7 @@ Each developer branches from main, runs `/todo` on their branch, and opens a PR 
 
 ### Daily Standups with `/bosskey`
 
-Each developer runs `/bosskey` to generate their standup update from git history. No manual status writing needed:
+Each developer runs [`/bosskey`](../skills/bosskey.md) to generate their standup update from git history. No manual status writing needed:
 
 ```bash
 claw

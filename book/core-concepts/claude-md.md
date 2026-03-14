@@ -116,7 +116,7 @@ This is where vibestack pays for itself. These rules are the kind of thing that 
 
 ### Let `/vibestack` do the first pass
 
-When you run `/vibestack`, Claude analyzes your project and fills in every section based on what it finds. This gets you 80% of the way there.
+When you run [`/vibestack`](../skills/vibestack.md), Claude analyzes your project and fills in every section based on what it finds. This gets you 80% of the way there.
 
 ### Then refine manually
 

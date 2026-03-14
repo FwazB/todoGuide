@@ -125,7 +125,7 @@ Create `.github/workflows/ci.yml` with the appropriate template content.
 Adjust the template for your project:
 
 - **Node version** — match your `.nvmrc` or `package.json` engines field
-- **Test command** — use whatever `./ops.sh test` runs
+- **Test command** — use whatever [`./ops.sh test`](../core-concepts/ops-sh.md) runs
 - **Coverage thresholds** — add minimum coverage requirements if you have them
 - **Security exceptions** — some audit findings are acceptable (unmaintained but not vulnerable packages)
 
@@ -148,4 +148,4 @@ Push the workflow file and check that it runs on your next commit. Fix any failu
 - **Don't skip CI for "small" changes.** A one-line change can break types across the project.
 - **Keep CI fast.** If your pipeline takes more than 5 minutes, developers (and Claude) will stop waiting for it. Cache dependencies, parallelize jobs, skip unnecessary steps.
 - **Fix failures immediately.** A red CI that everyone ignores is worse than no CI. If a check fails, either fix the issue or remove the check.
-- **Match CI with local checks.** The commands in your CI pipeline should be the same ones in `ops.sh`. If `./ops.sh test` passes locally, CI should pass too.
+- **Match CI with local checks.** The commands in your CI pipeline should be the same ones in [`ops.sh`](../core-concepts/ops-sh.md). If `./ops.sh test` passes locally, CI should pass too.

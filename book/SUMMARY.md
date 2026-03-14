@@ -6,6 +6,7 @@
 
 # Getting Started
 
+- [Quickstart](getting-started/quickstart.md)
 - [What is vibestack?](getting-started/what-is-vibestack.md)
 - [Installation](getting-started/installation.md)
 - [Your First Run](getting-started/first-run.md)
@@ -40,3 +41,4 @@
 - [CI Guards](advanced/ci-guards.md)
 - [Settings & Hooks](advanced/settings-and-hooks.md)
 - [Tips & Troubleshooting](advanced/tips.md)
+- [Glossary](advanced/glossary.md)

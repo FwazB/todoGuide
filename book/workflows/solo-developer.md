@@ -12,7 +12,7 @@ This means you can move fast. Install vibestack, configure it, and start shippin
 
 ### Morning: Plan
 
-Open TODO.md and review the task list. Is the priority order still right? Did something change overnight — a user report, a new idea, a dependency update?
+Open [TODO.md](../core-concepts/todo-md.md) and review the task list. Is the priority order still right? Did something change overnight — a user report, a new idea, a dependency update?
 
 Reorder tasks if needed. Add new ones at the right priority level. Then kick off a session:
 
@@ -55,7 +55,7 @@ Push when you're ready.
 
 For solo developers, TODO.md is more than a task tracker. It's your roadmap.
 
-Run `/todo populate` and look at what Claude identifies as the most important work. This gives you a staff-engineer-level audit of your codebase — security gaps, missing tests, reliability issues, performance problems. For free.
+Run [`/todo populate`](../skills/todo.md) and look at what Claude identifies as the most important work. This gives you a staff-engineer-level audit of your codebase — security gaps, missing tests, reliability issues, performance problems. For free.
 
 You don't have to follow the order exactly. If you know users are hitting a specific bug, bump that task up. But the default ordering (security -> reliability -> testing -> CI/CD) is a solid path to production-readiness.
 
@@ -107,5 +107,5 @@ The pending markers prevent collisions. But as a solo developer, you'll usually 
 - **Commit often.** Small, focused commits are easier to review and revert than large batches.
 - **Trust but verify.** Claude's code is usually good, but you're the one who ships it. Read the diffs.
 - **Don't skip tests.** It's tempting when you're moving fast. But tests are what let Claude work confidently — if it can run `./ops.sh test` and verify its changes, it makes fewer mistakes.
-- **Use `/bosskey` for accountability.** Even without a team, generating a standup summary helps you track your own progress and stay focused.
+- **Use [`/bosskey`](../skills/bosskey.md) for accountability.** Even without a team, generating a standup summary helps you track your own progress and stay focused.
 - **Repopulate regularly.** When you've cleared 80% of the list, run `/todo populate`. Fresh eyes on the codebase often catch things the previous pass missed.
