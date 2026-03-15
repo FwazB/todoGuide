@@ -50,6 +50,14 @@ your-project/
       lsp/SKILL.md             # Reference: language server usage
 ```
 
+The three files you'll interact with most:
+
+- **CLAUDE.md** — The project brain. Claude reads this at the start of every session to understand your tech stack, directory structure, and conventions. Starts as a template; `/vibestack` fills it in.
+- **TODO.md** — Your task list. A flat Markdown file with checkboxes that both you and Claude use to track work. `/todo populate` generates tasks; `/todo` executes them.
+- **ops.sh** — Your project CLI. Every command your project supports (build, test, run, deploy) lives here as a single entry point. `/vibestack` fills in the real commands.
+
+Everything else is supporting infrastructure: skills teach Claude your workflows, hooks notify you when work finishes, and settings pre-approve tool access.
+
 ### Smart Merging
 
 If you already have a `CLAUDE.md` or other files, the installer won't overwrite them. It merges new content with your existing files so you don't lose any work.

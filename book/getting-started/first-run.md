@@ -1,6 +1,6 @@
 # Your First Run
 
-You've installed vibestack and the convention files are in your project. Now it's time to configure everything for your specific codebase. This chapter walks through the full first-time workflow.
+The convention files are in your project but they're all templates. This chapter walks you through the four commands that turn them into real, project-specific context: `/vibestack`, `/todo populate`, `/todo`, and `/docs`. By the end, Claude will know your project as well as you do.
 
 ## Launch Claude Code
 

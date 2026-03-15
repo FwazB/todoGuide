@@ -1,8 +1,6 @@
 # How Skills Work
 
-Skills teach Claude project-specific conventions and workflows. Instead of explaining how your project works in every conversation, you write it once as a skill and Claude loads it automatically or on demand.
-
-A skill is a Markdown file with some frontmatter. That's it. No plugins, no APIs, no build steps. You write instructions in plain English and Claude follows them.
+Every time you correct Claude — "no, we use Zod not Joi," "run pnpm not npm," "errors go through AppError" — that's a convention you could write down once and never repeat. Skills are how you do that. They're Markdown files that teach Claude your project's rules and workflows, loaded automatically or on demand. No plugins, no APIs, no build steps.
 
 ## Two Types of Skills
 

@@ -1,6 +1,6 @@
 # TODO.md — Task Tracking
 
-`TODO.md` is a lightweight task tracker designed for human/AI collaboration. It's a plain Markdown file with checkboxes — simple enough that both you and Claude can read and edit it without any tooling.
+Most task trackers are built for humans. TODO.md is built for humans and AI agents working together. It's a plain Markdown file with checkboxes, a priority order, and a simple convention that prevents two agents from grabbing the same task at the same time.
 
 ## The Format
 

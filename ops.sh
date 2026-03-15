@@ -44,18 +44,44 @@ elif [[ "$cmd" == "test" ]]; then
     if [[ -f book/SUMMARY.md ]]; then
         while IFS= read -r ref; do
             if [[ ! -f "book/$ref" ]]; then
-                echo "  BROKEN LINK: $ref"
+                echo "  BROKEN: SUMMARY.md -> $ref"
                 ERRORS=$((ERRORS + 1))
             fi
         done < <(grep -oE '\([^)]+\.md\)' book/SUMMARY.md | tr -d '()')
-        echo "Link check complete."
+        echo "  Done."
     else
         echo "  No book/SUMMARY.md yet"
     fi
+    echo ""
+
+    echo "Checking internal cross-chapter links..."
+    LINK_ERRORS=$(mktemp)
+    while IFS= read -r file; do
+        dir=$(dirname "$file")
+        # Strip code blocks, then extract markdown links
+        awk '/^```/{skip=!skip; next} !skip{print}' "$file" \
+          | { grep -oE '\]\([^)]+\.md[^)]*\)' || true; } \
+          | sed 's/.*](//' | tr -d ')' \
+          | while IFS= read -r link; do
+                link="${link%%#*}"
+                if [[ -n "$link" && "$link" != http* ]]; then
+                    target="$dir/$link"
+                    if [[ ! -f "$target" ]]; then
+                        echo "  BROKEN: $file -> $link"
+                        echo "x" >> "$LINK_ERRORS"
+                    fi
+                fi
+            done
+    done < <(find book -name "*.md")
+    LINK_ERR_COUNT=$(wc -l < "$LINK_ERRORS" | tr -d ' ')
+    rm -f "$LINK_ERRORS"
+    ERRORS=$((ERRORS + LINK_ERR_COUNT))
+    echo "  Done."
 
     if [[ "$ERRORS" -gt 0 ]]; then
         die "$ERRORS broken link(s) found"
     fi
+    echo ""
     echo "All checks passed."
 
 # ─── run ────────────────────────────────────────────────

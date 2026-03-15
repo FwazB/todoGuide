@@ -1,6 +1,6 @@
 # CI Guards
 
-vibestack includes GitHub Actions workflow templates for automated validation. These "CI guards" run on every push and pull request, catching issues before they reach production. They replace the need for interactive approval gates — instead of asking "should I run the linter?", the CI pipeline just runs it.
+You don't want Claude asking "should I run the linter?" every time it makes a change. You want the linter to just run, automatically, on every push. That's what CI guards do — GitHub Actions workflows that validate your code so Claude can stay focused on building instead of waiting for approval.
 
 ## Philosophy
 

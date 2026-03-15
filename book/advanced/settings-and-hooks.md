@@ -1,6 +1,6 @@
 # Settings & Hooks
 
-vibestack configures Claude Code's behavior through `.claude/settings.json` and shell-based hooks. This chapter explains what each setting does and how to customize them.
+Out of the box, vibestack pre-approves tool access so Claude doesn't ask permission every 30 seconds, and plays a sound when it finishes so you can walk away. All of this is controlled through two files: `.claude/settings.json` for permissions and environment, and shell scripts in `.claude/hooks/` for event-driven automation. This chapter covers both.
 
 ## settings.json
 

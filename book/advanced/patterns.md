@@ -136,12 +136,12 @@ Link from CLAUDE.md to docs/ for anything that needs more than a few sentences.
 
 ## Running vibestack in CI
 
-You can use vibestack skills in CI pipelines by running Claude Code in non-interactive mode. This is useful for automated doc updates or task generation:
+You can use vibestack skills in CI pipelines by running Claude Code with the `-p` flag (print mode, non-interactive):
 
 ```yaml
 - name: Update docs
   run: |
-    echo "/docs" | claude --no-interactive
+    claude -p "/docs"
 ```
 
-This is experimental — most teams use vibestack interactively and reserve CI for standard checks (lint, test, build).
+This is experimental and requires Claude Code to be authenticated in the CI environment. Most teams use vibestack interactively and reserve CI for standard checks (lint, test, build).
